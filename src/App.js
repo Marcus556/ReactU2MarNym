@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WrapperComponent from './components/WrapperComponent';
+import CardComponent from './components/CardComponent';
 import UserComponent from './components/UserComponent';
 import NavbarComponent from './components/NavbarComponent';
 import LoginScreen from './screens/LoginScreen'
@@ -16,7 +16,8 @@ class App extends Component {
     this.state = {
       users: ["Marcus", "Dajana", "Tindra", "Jimmy"],
       color: "white",
-      user: [""]
+      user: [""],
+      loggedOn: false,
     }
   }
 
@@ -52,6 +53,13 @@ class App extends Component {
     this.setState({ user: event.target.value })
   }
 
+  logIn = () => {
+    this.setState({ loggedOn: true})
+  }
+  logOut = () => {
+    this.setState({ loggedOn: false})
+  }
+
   //Renderar våra komponenter och skickar med de props som behövs.
   render() {
     return (
@@ -66,13 +74,13 @@ class App extends Component {
       <Switch>
       <Route exact path='/'>
         <div>
-          <WrapperComponent>
+          <CardComponent>
             <UserComponent users={this.state.users} color={this.state.color}></UserComponent>
             <button type="button" className="btn btn-info btn-block" onClick={this.toggleColor}>Toggle Color</button>
-          </WrapperComponent>
+          </CardComponent>
         </div>
         <div>
-          <WrapperComponent>
+          <CardComponent>
             <form >
               <div className="form-group">
                 <input type="text" className="input-group-text" placeholder="New user..." value={this.state.user} onChange={this.user}></input>
@@ -80,18 +88,18 @@ class App extends Component {
               <button type="button" className="btn btn-primary btn-block" onClick={this.addUser}>add</button>
               <button type="button" className="btn btn-danger btn-block" onClick={this.removeUser}>Delete</button>
             </form>
-          </WrapperComponent>
+          </CardComponent>
         </div>
         </Route>
         <Route exact path='/login'>
-        <WrapperComponent>
-            <LoginScreen />
-        </WrapperComponent>
+        <CardComponent info='asdasda'>
+            <LoginScreen logIn={this.logIn} logOut={this.logOut} loggedOn={this.state.loggedOn}/>
+        </CardComponent>
       </Route>
       <Route exact path='/user'>
-      <WrapperComponent>
+      <CardComponent>
             <UserScreen />
-        </WrapperComponent>
+        </CardComponent>
       </Route>
         </Switch>
         
