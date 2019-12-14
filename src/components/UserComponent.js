@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 function UserComponent(props) {
   let users = props.users;
@@ -6,8 +7,10 @@ function UserComponent(props) {
 
   //Skapar en array userList genom att mappa users-arrayen och lägga en <li> tag för varje instans med user och key.
   const userList = users.map((user, i) => {
-    return <li key={i}>{user}</li>
+    return <li key={i}><Link to={`/user/${user}`}>{user}</Link></li>
   })
+
+
 
   //returnerar vår nya Userlist och sätter color efter vår let color.
   return (

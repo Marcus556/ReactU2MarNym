@@ -1,11 +1,20 @@
 import React from 'react'
 
-const UserScreen = () => {
-  return (
+const UserScreen = (  {match} ) => {
+  if (match.params.user === undefined) {
+    return (
+      <div>
+        <h3>No selected users</h3>
+      </div>
+    )
+  } else {
+    return (
     <div>
-      <h1>Userscreen</h1>
+      <h3>User: {match.params.user}</h3>
     </div>
-  )
+    )
+  }
+
 }
 
 export default UserScreen

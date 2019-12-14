@@ -96,11 +96,14 @@ class App extends Component {
             <LoginScreen logIn={this.logIn} logOut={this.logOut} loggedOn={this.state.loggedOn}/>
         </CardComponent>
       </Route>
-      <Route exact path='/user'>
-      <CardComponent>
-            <UserScreen />
-        </CardComponent>
-      </Route>
+      
+      <Route exact path='/user' render={props => (
+        <CardComponent><UserScreen {...props }/></CardComponent>
+      )} />
+      <Route exact path='/user/:user' render={props => (
+        <CardComponent><UserScreen {...props }/></CardComponent>
+      )} />
+
         </Switch>
         
       </div>
