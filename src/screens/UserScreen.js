@@ -1,20 +1,21 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router";
 
-const UserScreen = (  {match} ) => {
-  if (match.params.user === undefined) {
+const UserScreen = () => {
+  const { user } = useParams();
+  if (user === undefined) {
     return (
       <div>
         <h3>No selected users</h3>
       </div>
-    )
+    );
   } else {
     return (
-    <div>
-      <h3>User: {match.params.user}</h3>
-    </div>
-    )
+      <div>
+        <h3>User: {user}</h3>
+      </div>
+    );
   }
+};
 
-}
-
-export default UserScreen
+export default UserScreen;
